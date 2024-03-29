@@ -7,20 +7,51 @@ on:
     types: [created]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
+<<<<<<< HEAD
       - uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install --yes python3-wheel twine
+=======
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Build and publish
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
-        run: |
-          python3 setup.py sdist bdist_wheel
-          twine upload dist/*
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install build
+>>>>>>> upstream/main
+
+      - name: Build
+        run: python -m build .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          path: ./dist
+          name: dist
+
+  pypi-publish:
+    needs: ['build']
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/prometheus-pve-exporter/
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: ./dist
+          name: dist
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

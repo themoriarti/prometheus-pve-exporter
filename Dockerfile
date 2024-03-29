@@ -1,41 +1,37 @@
-ARG alpine_version=3.18.4
+FROM alpine:3.19.1 as base
 
-FROM alpine:${alpine_version} as base
-RUN apk update && apk upgrade
-
-RUN apk add --no-cache \
+FROM base as build
+RUN apk update && apk add --no-cache \
+    build-base \
     ca-certificates \
-    py3-gunicorn \
-    py3-paramiko \
+    libffi-dev \
+    py3-build \
     py3-pip \
-    py3-prometheus-client \
-    py3-requests \
-    py3-werkzeug \
-    py3-wheel \
-    py3-yaml \
     python3 \
-    tini
+    python3-dev \
+    yaml-dev
 
-FROM base as builder
+ADD . /src/prometheus-pve-exporter
+WORKDIR /src/prometheus-pve-exporter
+RUN python3 -m pip wheel -w dist --no-binary "cffi" --no-binary "pyyaml" -r requirements.txt && \
+    python3 -m build .
 
-ARG proxmoxer_version=2.0.1
-ENV proxmoxer_version=${proxmoxer_version}
+FROM base
+RUN apk update && apk add --no-cache \
+    ca-certificates \
+    py3-pip \
+    python3
 
-ADD . /src
-WORKDIR /opt
-RUN pip3 wheel --no-deps /src proxmoxer==${proxmoxer_version}
+COPY --from=build /src/prometheus-pve-exporter/dist /src/prometheus-pve-exporter/dist
+RUN python3 -m venv /opt/prometheus-pve-exporter && \
+    /opt/prometheus-pve-exporter/bin/pip install /src/prometheus-pve-exporter/dist/*.whl && \
+    ln -s /opt/prometheus-pve-exporter/bin/pve_exporter /usr/bin/pve_exporter && \
+    rm -rf /src/prometheus-pve-exporter /root/.cache
 
-FROM base as runtime
+RUN addgroup -S -g 101 prometheus && \
+    adduser -D -H -S -G prometheus -u 101 prometheus
 
-COPY --from=builder /opt /opt
-
-RUN pip3 install --no-cache-dir --no-index /opt/*py3-none-any.whl && \
-    rm /opt/*py3-none-any.whl
-
-USER nobody
-
+USER prometheus
 EXPOSE 9221
 
-ENTRYPOINT [ "/sbin/tini", "--", "/usr/bin/pve_exporter" ]
-
-CMD [ "/etc/pve.yml" ]
+ENTRYPOINT [ "/opt/prometheus-pve-exporter/bin/pve_exporter" ]

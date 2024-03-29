@@ -1,6 +1,6 @@
-from setuptools import find_packages
 from setuptools import setup
 
+<<<<<<< HEAD
 setup(
     name="prometheus-pve-exporter",
     version="2.3.1",
@@ -36,3 +36,6 @@ setup(
         "License :: OSI Approved :: Apache Software License",
     ],
 )
+=======
+setup()
+>>>>>>> upstream/main

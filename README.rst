@@ -37,7 +37,7 @@ Example: Run the image with a mounted configuration file and published port:
 
 .. code:: shell
 
-   docker run --name prometheus-pve-exporter -d -p 127.0.0.1:9221:9221 -v /path/to/pve.yml:/etc/pve.yml prompve/prometheus-pve-exporter
+   docker run --init --name prometheus-pve-exporter -d -p 127.0.0.1:9221:9221 -v /path/to/pve.yml:/etc/prometheus/pve.yml prompve/prometheus-pve-exporter
 
 Prometheus PVE Exporter will now be reachable at http://localhost:9221/.
 
@@ -52,17 +52,18 @@ Usage
                         [--collector.cluster | --no-collector.cluster]
                         [--collector.resources | --no-collector.resources]
                         [--collector.config | --no-collector.config]
+                        [--config.file CONFIG_FILE]
+                        [--web.listen-address WEB_LISTEN_ADDRESS]
                         [--server.keyfile SERVER_KEYFILE]
                         [--server.certfile SERVER_CERTFILE]
-                        [config] [port] [address]
-
-    positional arguments:
-      config                Path to configuration file (pve.yml)
-      port                  Port on which the exporter is listening (9221)
-      address               Address to which the exporter will bind
 
     options:
       -h, --help            show this help message and exit
+      --config.file CONFIG_FILE
+                            Path to config file (/etc/prometheus/pve.yml)
+      --web.listen-address WEB_LISTEN_ADDRESS
+                            Address on which to expose metrics and web server.
+                            ([::]:9221)
       --server.keyfile SERVER_KEYFILE
                             SSL key for server
       --server.certfile SERVER_CERTFILE
@@ -91,8 +92,8 @@ Usage
                             Exposes PVE onboot status
 
 
-Use `[::]` for the `address` argument in order to bind to both IPv6 and IPv4
-sockets on dual stacked machines.
+Use `[::]` in the `--web.listen-address` flag in order to bind to both IPv6 and
+IPv4 sockets on dual stacked machines.
 
 Visit http://localhost:9221/pve?target=1.2.3.4&cluster=1&node=1 where 1.2.3.4
 is the IP of the Proxmox VE node to get metrics from. Specify the ``module``
@@ -277,8 +278,8 @@ Example config for PVE exporter running on PVE node:
         metrics_path: /pve
         params:
           module: [default]
-          cluster: 1
-          node: 1
+          cluster: ['1']
+          node: ['1']
 
 Example config for PVE exporter running on Prometheus host:
 
@@ -293,8 +294,8 @@ Example config for PVE exporter running on Prometheus host:
         metrics_path: /pve
         params:
           module: [default]
-          cluster: 1
-          node: 1
+          cluster: ['1']
+          node: ['1']
         relabel_configs:
           - source_labels: [__address__]
             target_label: __param_target

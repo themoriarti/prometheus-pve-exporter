@@ -9,6 +9,136 @@ The format is based on `Keep a Changelog`_ and this project adheres to
 `Unreleased`_
 -------------
 
+
+`3.2.3`_ - 2024-02-25
+---------------------
+
+Changed
+~~~~~~~
+
+- Bump cryptography from 42.0.2 to 42.0.4 (#232)
+
+
+`3.2.2`_ - 2024-02-06
+---------------------
+
+Changed
+~~~~~~~
+
+- Bump cryptography from 41.0.7 to 42.0.0 (#226)
+- Bump alpine container image version from 3.19.0 to 3.19.1 (#225)
+
+
+`3.2.1`_ - 2024-01-07
+---------------------
+
+Changed
+~~~~~~~
+
+- Build cffi and pyyaml from source (#222)
+- Use appropriate build tools to create dist for pypi (#220)
+
+
+`3.2.0`_ - 2024-01-06
+---------------------
+
+Changed
+~~~~~~~
+
+- Bump alpine from 3.18.5 to 3.19.0 (#216)
+- Update to pylint 3 (#218)
+- Use pyproject.toml, pip-compile and venv to build container image (#215)
+
+
+`3.1.0`_ - 2024-01-03
+---------------------
+
+Added
+~~~~~
+
+- Adding template label to pve_guest_info metric (#208)
+
+Changed
+~~~~~~~
+
+- Simplify container build spec (#210)
+- Fix coding style after template label addition (#209)
+- Bump actions/download-artifact from 3 to 4 (#205)
+- Bump actions/upload-artifact from 3 to 4 (#206)
+- Correct cluster and node params (#202)
+- Extract cluster and node collectors into separate files (#198)
+
+
+`3.0.2`_ - 2023-11-05
+---------------------
+
+Changed
+~~~~~~~
+
+- Specify same arguments for upload-artifact and download-artifact actions
+  (#196)
+
+
+`3.0.1`_ - 2023-11-05
+---------------------
+
+Changed
+~~~~~~~
+
+- Revert to deprecated way of building packages (#193)
+
+
+`3.0.0`_ - 2023-11-05
+---------------------
+
+Changed (BREAKING)
+~~~~~~~~~~~~~~~~~~
+- Use flags instead of positional arguments for config file and listen address
+  (#190)
+- Scrape /nodes endpoint from current node only (#180)
+- Remove tini from docker image (#179)
+- Bump required python version to 3.9 (bullseye) (#162)
+- Run with a dedicated user in container by default (#182)
+
+Changed
+~~~~~~~
+
+- Implement pypi trusted publishing workflow (#187)
+- Use PEP440 pattern when converting repo release tags into docker image tags (#183)
+- Remove references to develop branch (#181)
+- Update docker image to alpine 3.18.4 (#170)
+- Bump required python version to 3.9 (in README) (#169)
+- Remove fallback for BooleanOptionalAction (obsolete in python>=3.9) (#163)
+- Fix github actions (#161)
+- Bump actions/checkout from 2 to 4 (#177)
+- ci: add dependabot (#176)
+- ci: add arm64 image build (#175)
+
+
+`3.0.0b1`_ - 2023-10-16
+-----------------------
+
+Changed (BREAKING)
+~~~~~~~~~~~~~~~~~~
+- Scrape /nodes endpoint from current node only (#180)
+- Remove tini from docker image (#179)
+- Bump required python version to 3.9 (bullseye) (#162)
+- Run with a dedicated user in container by default (#182)
+
+Changed
+~~~~~~~
+- Use PEP440 pattern when converting repo release tags into docker image tags (#183)
+- Update docker image to alpine 3.18.4 (#170)
+- Remove fallback for BooleanOptionalAction (obsolete in python>=3.9) (#163)
+- Fix github actions (#161)
+- Bump actions/checkout from 2 to 4 (#177)
+
+Added
+~~~~~
+- ci: add dependabot (#176)
+- ci: add arm64 image build (#175)
+
+
 `2.3.1`_ - 2023-08-02
 ---------------------
 
@@ -240,7 +370,16 @@ Added
 
 .. _Keep a Changelog: http://keepachangelog.com/en/1.0.0/
 .. _Semantic Versioning: http://semver.org/spec/v2.0.0.html
-.. _Unreleased: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v2.3.1...HEAD
+.. _Unreleased: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.2.3...HEAD
+.. _3.2.3: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.2.3...v3.2.2
+.. _3.2.2: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.2.2...v3.2.1
+.. _3.2.1: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.2.1...v3.2.0
+.. _3.2.0: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.2.0...v3.1.0
+.. _3.1.0: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.1.0...v3.0.2
+.. _3.0.2: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.0.2...v3.0.1
+.. _3.0.1: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.0.1...v3.0.0
+.. _3.0.0: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.0.0b1...v3.0.0
+.. _3.0.0b1: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v2.3.1...v3.0.0b1
 .. _2.3.1: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v2.3.0...v2.3.1
 .. _2.3.0: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v2.2.4...v2.3.0
 .. _2.2.3: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v2.2.3...v2.2.4
