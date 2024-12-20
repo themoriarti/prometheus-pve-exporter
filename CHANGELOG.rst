@@ -10,8 +10,33 @@ The format is based on `Keep a Changelog`_ and this project adheres to
 -------------
 
 
+`3.4.7`_ - 2024-12-17
+---------------------
+
+Changed
+~~~~~~~
+
+- Bump proxmoxer from 2.1.0 to 2.2.0 (#309)
+- Bump prometheus-client from 0.21.0 to 0.21.1 (#308)
+- Bump alpine from 3.20.3 to 3.21.0 (#307)
+
+
+`3.4.6`_ - 2024-12-02
+---------------------
+
+Changed
+~~~~~~~
+
+- Fix metrics docs (#301)
+- Bump werkzeug from 3.0.4 to 3.1.3 (#297)
+- Bump prometheus-client from 0.20.0 to 0.21.0 (#286)
+
+
 `3.4.5`_ - 2024-09-16
 ---------------------
+
+Changed
+~~~~~~~
 
 - Bump cryptography to 43.0.1 (#283)
 - Bump paramiko from 3.4.1 to 3.5.0 (#282)
@@ -21,6 +46,9 @@ The format is based on `Keep a Changelog`_ and this project adheres to
 
 `3.4.4`_ - 2024-08-15
 ---------------------
+
+Changed
+~~~~~~~
 
 - Bump pyyaml from 6.0.1 to 6.0.2 (#274)
 - Bump proxmoxer from 2.0.1 to 2.1.0 (#273)
@@ -457,7 +485,9 @@ Added
 
 .. _Keep a Changelog: http://keepachangelog.com/en/1.0.0/
 .. _Semantic Versioning: http://semver.org/spec/v2.0.0.html
-.. _Unreleased: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.5...HEAD
+.. _Unreleased: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.7...HEAD
+.. _3.4.7: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.6...v3.4.7
+.. _3.4.6: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.5...v3.4.6
 .. _3.4.5: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.4...v3.4.5
 .. _3.4.4: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.3...v3.4.4
 .. _3.4.3: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.2...v3.4.3
