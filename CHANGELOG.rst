@@ -9,6 +9,35 @@ The format is based on `Keep a Changelog`_ and this project adheres to
 `Unreleased`_
 -------------
 
+`3.5.2`_ - 2025-02-18
+---------------------
+
+Changed
+~~~~~~~
+
+- Bump alpine from 3.21.2 to 3.21.3 (#321)
+- Bump cryptography from 43.0.1 to 44.0.1 (#319)
+- Bump paramiko from 3.5.0 to 3.5.1 (#318)
+
+
+`3.5.1`_ - 2025-01-20
+---------------------
+
+Changed
+~~~~~~~
+
+- Bump alpine from 3.21.0 to 3.21.2 (#315)
+
+
+`3.5.0`_ - 2025-01-02
+---------------------
+
+Added
+~~~~~
+
+- Extend storage info (#312)
+- Add pve_ha_state and pve_lock_state metrics (#311)
+
 
 `3.4.7`_ - 2024-12-17
 ---------------------
@@ -485,7 +514,10 @@ Added
 
 .. _Keep a Changelog: http://keepachangelog.com/en/1.0.0/
 .. _Semantic Versioning: http://semver.org/spec/v2.0.0.html
-.. _Unreleased: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.7...HEAD
+.. _Unreleased: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.5.2...HEAD
+.. _3.5.2: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.5.1...v3.5.2
+.. _3.5.1: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.5.0...v3.5.1
+.. _3.5.0: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.7...v3.5.0
 .. _3.4.7: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.6...v3.4.7
 .. _3.4.6: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.5...v3.4.6
 .. _3.4.5: https://github.com/prometheus-pve/prometheus-pve-exporter/compare/v3.4.4...v3.4.5
